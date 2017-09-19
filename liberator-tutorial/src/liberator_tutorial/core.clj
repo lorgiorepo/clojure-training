@@ -5,7 +5,9 @@
 
 (defroutes app
   (ANY "/foo" [] (resource :available-media-types ["text/html"]
-                            :handle-ok "<html>Hello World</html>")))
+                            :handle-ok (fn [ctx]
+                                         (format "<html>It's %d milliseconds since the beginning of the
+                                         epoch.</html>"(System/currentTimeMillis))))))
 
 (def handler
   (-> app
